@@ -104,7 +104,7 @@ The template includes a robust font fallback system:
 3. System default fonts (SimSun, SimHei, etc.)
 4. Fallback to standard Latin fonts (Times New Roman, Arial)
 
-See `template/chinese-example.typ` for a complete demonstration.
+See `template/chinese.typ` for a complete demonstration.
 
 ## Configuration
 

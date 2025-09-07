@@ -4,37 +4,37 @@
 default:
     @just --list
 
-# Compile the main example template
+# Compile the English example template
 build:
-    typst compile --root . template/main.typ
+    typst compile --root . template/english.typ
 
 # Compile the Chinese example template
 build-chinese:
-    typst compile --root . template/chinese-example.typ
+    typst compile --root . template/chinese.typ
 
 # Compile both example templates
 build-all: build build-chinese
 
-# Watch and auto-compile the main template
+# Watch and auto-compile the English template
 watch:
-    typst watch --root . template/main.typ
+    typst watch --root . template/english.typ
 
 # Watch and auto-compile the Chinese template
 watch-chinese:
-    typst watch --root . template/chinese-example.typ
+    typst watch --root . template/chinese.typ
 
 # Clean generated PDF files
 clean:
     rm -f template/*.pdf
     rm -f *.pdf
 
-# Check template syntax without generating PDF
+# Check English template syntax without generating PDF
 check:
-    typst compile --root . template/main.typ --output /dev/null
+    typst compile --root . template/english.typ --output /dev/null
 
 # Check Chinese template syntax
 check-chinese:
-    typst compile --root . template/chinese-example.typ --output /dev/null
+    typst compile --root . template/chinese.typ --output /dev/null
 
 # Run all checks
 check-all: check check-chinese
@@ -49,10 +49,10 @@ format:
         echo "typstyle not found. Install with: cargo install typstyle"
     fi
 
-# Initialize a new document from template
+# Initialize a new document from English template
 init NAME:
     mkdir -p {{NAME}}
-    cp template/main.typ {{NAME}}/main.typ
+    cp template/english.typ {{NAME}}/main.typ
     cp template/refs.bib {{NAME}}/refs.bib
     sed -i 's/The Beauty of\\ Sharing Knowledge/{{NAME}}/g' {{NAME}}/main.typ
     sed -i 's/Max Mustermann/Author Name/g' {{NAME}}/main.typ
@@ -61,7 +61,7 @@ init NAME:
 # Initialize a Chinese document from template
 init-chinese NAME:
     mkdir -p {{NAME}}
-    cp template/chinese-example.typ {{NAME}}/main.typ
+    cp template/chinese.typ {{NAME}}/main.typ
     cp template/refs.bib {{NAME}}/refs.bib
     sed -i 's/中文文档模板示例/{{NAME}}/g' {{NAME}}/main.typ
     sed -i 's/张三/作者姓名/g' {{NAME}}/main.typ
