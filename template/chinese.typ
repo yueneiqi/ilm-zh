@@ -11,7 +11,7 @@
   ],
   preface: [
     #align(center + horizon)[
-      感谢使用这个模板 ❤️,\ 希望您喜欢它 😊
+      感谢使用这个模板 #emoji.heart,\ 希望您喜欢它 #emoji.face.smile
     ]
   ],
   bibliography: bibliography("refs.bib"),

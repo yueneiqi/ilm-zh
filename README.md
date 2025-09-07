@@ -10,7 +10,7 @@ images, tables, code blocks.
 
 Dynamic running footer contains the title of the chapter (top-level heading).
 
-See the [example.pdf](https://github.com/talal/ilm/blob/main/example.pdf) file and the chinese-exmaple.pdf file to see how it looks.
+See the [example.pdf](https://github.com/talal/ilm/blob/main/example.pdf) file and the [chinese-exmaple.pdf](https://github.com/yueneiqi/ilm-zh/blob/main/chinese-example.pdf) file to see how it looks.
 
 ## Usage
 
@@ -131,7 +131,7 @@ This template exports the `ilm` function with the following named arguments:
 
 The above table gives you a _brief description_ of the different options that you can
 choose to customize the template. For a detailed explanation of these options, see the
-[example.pdf](https://github.com/talal/ilm/blob/main/example.pdf) file.
+[example.pdf](https://github.com/talal/ilm/blob/main/example.pdf) file and the [chinese-exmaple.pdf](https://github.com/yueneiqi/ilm-zh/blob/main/chinese-example.pdf) file.
 
 The function also accepts a single, positional argument for the body.
 
