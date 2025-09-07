@@ -15,9 +15,9 @@
     ]
   ],
   bibliography: bibliography("refs.bib"),
-  figure-index: (enabled: true, title: "图表索引"),
+  figure-index: (enabled: true, title: "插图索引"),
   table-index: (enabled: true, title: "表格索引"),
-  listing-index: (enabled: true, title: "代码索引"),
+  listing-index: (enabled: true, title: "程序清单索引"),
 )
 
 = 中文支持功能
@@ -102,6 +102,91 @@ def calculate_sum(a, b):
     [王五], [28], [UI设计师],
     [赵六], [32], [数据分析师],
   )
+)
+
+== 插图示例
+
+模板支持插图的自动编号和索引功能。以下是一个简单的示例图形：
+
+#figure(
+  caption: [中文排版流程示意图],
+  block(width: 100%, height: 4em, fill: rgb("#f0f8ff"), stroke: 1pt + rgb("#4169e1"), radius: 5pt)[
+    #align(center + horizon)[
+      #text(size: 14pt, weight: "bold")[输入文档] 
+      → #text(size: 14pt, weight: "bold")[字体处理] 
+      → #text(size: 14pt, weight: "bold")[排版引擎] 
+      → #text(size: 14pt, weight: "bold")[输出PDF]
+    ]
+  ]
+)
+
+== 程序清单示例
+
+除了内联代码，模板还支持完整的程序清单，并能自动生成索引：
+
+#figure(
+  caption: [Python 中文处理示例],
+  ```python
+  # 中文文本处理示例
+  import re
+  
+  def process_chinese_text(text):
+      """
+      处理中文文本的函数
+      参数：text - 输入的中文文本
+      返回：处理后的文本
+      """
+      # 移除多余的空白字符
+      text = re.sub(r'\s+', ' ', text.strip())
+      
+      # 标准化中文标点符号
+      punctuation_map = {
+          '，': '，',  # 全角逗号
+          '。': '。',  # 全角句号
+          '？': '？',  # 全角问号
+          '！': '！',  # 全角感叹号
+      }
+      
+      for old, new in punctuation_map.items():
+          text = text.replace(old, new)
+      
+      return text
+  
+  # 使用示例
+  sample_text = "你好，世界！这是一个中文处理的例子。"
+  processed = process_chinese_text(sample_text)
+  print(f"处理结果：{processed}")
+  ```
+)
+
+另一个展示 Typst 代码的程序清单：
+
+#figure(
+  caption: [Typst 中文模板配置],
+  ```typst
+  // 中文文档配置示例
+  #import "@preview/ilm:1.4.1": *
+  
+  #set text(lang: "zh", font: 字体.宋体)
+  
+  #show: ilm.with(
+    title: [学术论文标题],
+    author: "作者姓名",
+    fonts: (
+      宋体: ("Source Han Serif SC", "SimSun"),
+      黑体: ("Source Han Sans SC", "SimHei"),
+    ),
+    figure-index: (enabled: true, title: "插图索引"),
+    table-index: (enabled: true, title: "表格索引"),
+    listing-index: (enabled: true, title: "程序清单索引"),
+  )
+  
+  // 使用中文排版工具
+  #chinese-indent 这是带有标准缩进的中文段落。
+  
+  #黑体(size: 字号.小二)[重要提示]
+  #宋体[这里是正文内容。]
+  ```
 )
 
 = 配置说明
