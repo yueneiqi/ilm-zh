@@ -84,6 +84,10 @@ Standard Chinese typography sizes from 初号 (42pt) to 小七 (5pt):
   fonts: (
     宋体: ("Custom Song Font", "Source Han Serif SC"),
   ),
+  // Chinese index titles
+  figure-index: (enabled: true, title: "图表索引"),
+  table-index: (enabled: true, title: "表格索引"),
+  listing-index: (enabled: true, title: "代码索引"),
 )
 
 // Use Chinese text utilities

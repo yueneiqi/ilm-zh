@@ -15,9 +15,9 @@
     ]
   ],
   bibliography: bibliography("refs.bib"),
-  figure-index: (enabled: true),
-  table-index: (enabled: true),
-  listing-index: (enabled: true),
+  figure-index: (enabled: true, title: "图表索引"),
+  table-index: (enabled: true, title: "表格索引"),
+  listing-index: (enabled: true, title: "代码索引"),
 )
 
 = 中文支持功能
