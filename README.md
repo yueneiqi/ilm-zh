@@ -10,7 +10,7 @@ images, tables, code blocks.
 
 Dynamic running footer contains the title of the chapter (top-level heading).
 
-See the [example.pdf](https://github.com/talal/ilm/blob/main/example.pdf) file to see how it looks.
+See the [example.pdf](https://github.com/talal/ilm/blob/main/example.pdf) file and the chinese-exmaple.pdf file to see how it looks.
 
 ## Usage
 
