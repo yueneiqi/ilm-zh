@@ -54,6 +54,54 @@ can add a show rule like this at the top of your file:
 > the case for Typst Web App, then the template will fall back to the default "Fira Mono"
 > font.
 
+## Chinese Support
+
+This template now includes comprehensive Chinese language support with the following features:
+
+### Chinese Fonts (字体)
+- **宋体** (`宋体`): Serif fonts for body text (Times New Roman + Chinese serif fonts)
+- **黑体** (`黑体`): Sans serif fonts for headings and emphasis (Arial + Chinese sans fonts) 
+- **楷体** (`楷体`): Calligraphic fonts for special occasions
+- **仿宋** (`仿宋`): Imitation Song fonts for quotes and special text
+
+### Chinese Font Sizes (字号)
+Standard Chinese typography sizes from 初号 (42pt) to 小七 (5pt):
+- 初号, 小初, 一号, 小一, 二号, 小二, 三号, 小三, 四号, 中四, 小四, 五号, 小五, 六号, 小六, 七号, 小七
+
+### Usage for Chinese Documents
+
+```typ
+#import "@preview/ilm:1.4.1": *
+
+#set text(lang: "zh")  // Set language to Chinese
+
+#show: ilm.with(
+  title: [中文文档标题],
+  author: "作者姓名",
+  date: datetime(year: 2024, month: 03, day: 19),
+  abstract: [这是中文摘要的内容...],
+  // Custom Chinese font configuration (optional)
+  fonts: (
+    宋体: ("Custom Song Font", "Source Han Serif SC"),
+  ),
+)
+
+// Use Chinese text utilities
+#宋体(size: 字号.小四)[这是小四宋体文本]
+#黑体(size: 字号.三号)[这是三号黑体文本]
+
+#chinese-indent 这是带有中文段落缩进的文本。
+```
+
+### Font Fallback System
+The template includes a robust font fallback system:
+1. Professional Chinese fonts (if installed)
+2. Open-source fonts (Source Han series, Noto CJK series)
+3. System default fonts (SimSun, SimHei, etc.)
+4. Fallback to standard Latin fonts (Times New Roman, Arial)
+
+See `template/chinese-example.typ` for a complete demonstration.
+
 ## Configuration
 
 This template exports the `ilm` function with the following named arguments:
@@ -62,6 +110,7 @@ This template exports the `ilm` function with the following named arguments:
 | --- | --- | --- | --- |
 | `title` | `Your Title` | [content] | The title for your work. |
 | `author` | `Author` | [content] | A string to specify the author's name |
+| `fonts` | `(:)` | [dictionary] | Custom font configuration for Chinese text. Accepts keys: 宋体, 黑体, 楷体, 仿宋, 等宽 |
 | `paper-size` | `a4` | [string] | Specify a [paper size string] to change the page size. |
 | `date` | `none` | [datetime] | The date that will be displayed on the cover page. |
 | `date-format` | `[month repr:long] [day padding:zero], [year repr:full]` | [string] | The format for the date that will be displayed on the cover page. By default, the date will be displayed as `MMMM DD, YYYY`. |

@@ -12,12 +12,49 @@
 #let stroke-color = luma(200)
 #let fill-color = luma(250)
 
+// Chinese font size definitions (字号)
+#let 字号 = (
+  初号: 42pt,
+  小初: 36pt,
+  一号: 26pt,
+  小一: 24pt,
+  二号: 22pt,
+  小二: 18pt,
+  三号: 16pt,
+  小三: 15pt,
+  四号: 14pt,
+  中四: 13pt,
+  小四: 12pt,
+  五号: 10.5pt,
+  小五: 9pt,
+  六号: 7.5pt,
+  小六: 6.5pt,
+  七号: 5.5pt,
+  小七: 5pt,
+)
+
+// Chinese font definitions (字体) with fallbacks
+#let 字体 = (
+  // 宋体 - Serif fonts for Chinese text
+  宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "Source Han Serif SC", "Source Han Serif", "Noto Serif CJK SC", "SimSun", "Songti SC", "STSongti"),
+  // 黑体 - Sans serif fonts for Chinese text
+  黑体: ((name: "Arial", covers: "latin-in-cjk"), "Source Han Sans SC", "Source Han Sans", "Noto Sans CJK SC", "SimHei", "Heiti SC", "STHeiti"),
+  // 楷体 - Calligraphic fonts
+  楷体: ((name: "Times New Roman", covers: "latin-in-cjk"), "KaiTi", "Kaiti SC", "STKaiti", "FZKai-Z03S"),
+  // 仿宋 - Imitation Song fonts
+  仿宋: ((name: "Times New Roman", covers: "latin-in-cjk"), "FangSong", "FangSong SC", "STFangSong", "FZFangSong-Z02S"),
+  // 等宽 - Monospace fonts with Chinese support
+  等宽: ((name: "Courier New", covers: "latin-in-cjk"), (name: "Menlo", covers: "latin-in-cjk"), (name: "IBM Plex Mono", covers: "latin-in-cjk"), "Source Han Sans HW SC", "Source Han Sans HW", "Noto Sans Mono CJK SC", "SimHei", "Heiti SC", "STHeiti"),
+)
+
 // This function gets your whole document as its `body`.
 #let ilm(
   // The title for your work.
   title: [Your Title],
   // Author's name.
   author: "Author",
+  // Chinese fonts configuration
+  fonts: (:),
   // The paper size to use.
   paper-size: "a4",
   // Date that will be displayed on cover page.
@@ -71,15 +108,18 @@
   // The content of your work.
   body,
 ) = {
+  // Merge default fonts with user-provided fonts
+  let final-fonts = 字体 + fonts
+
   // Set the document's metadata.
   set document(title: title, author: author)
 
-  // Set the body font.
-  set text(size: 12pt) // default is 11pt
+  // Set the body font with Chinese support.
+  set text(size: 12pt, font: final-fonts.at("宋体", default: ("Times New Roman"))) // default is 11pt
 
-  // Set raw text font.
+  // Set raw text font with Chinese monospace support.
   // Default is Fira Mono at 8.8pt
-  show raw: set text(font: ("Iosevka", "Fira Mono"), size: 9pt)
+  show raw: set text(font: final-fonts.at("等宽", default: ("Iosevka", "Fira Mono")), size: 9pt)
 
   // Configure page size and margins.
   set page(
@@ -306,3 +346,18 @@
     body,
   )
 }
+
+// Chinese text utilities
+// Function to set Chinese font and size
+#let chinese-text(font-type: "宋体", size: 字号.小四, body) = {
+  text(font: 字体.at(font-type, default: 字体.宋体), size: size, body)
+}
+
+// Convenience functions for different Chinese font styles
+#let 宋体(size: 字号.小四, body) = chinese-text(font-type: "宋体", size: size, body)
+#let 黑体(size: 字号.小四, body) = chinese-text(font-type: "黑体", size: size, body)
+#let 楷体(size: 字号.小四, body) = chinese-text(font-type: "楷体", size: size, body)
+#let 仿宋(size: 字号.小四, body) = chinese-text(font-type: "仿宋", size: size, body)
+
+// Chinese text indentation helper (standard 2em indent)
+#let chinese-indent = h(2em)
