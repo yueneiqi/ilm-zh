@@ -6,6 +6,7 @@
   title: [中文文档模板示例],
   author: "张三",
   date: datetime(year: 2024, month: 03, day: 19),
+  date-format: "[year]年[month]月[day]日",
   abstract: [
     这是一个展示 ILM 模板中文支持的示例文档。本模板基于原版 ILM 模板，增加了对中文排版的支持，包括中文字体、字号定义以及相关的排版工具函数。
   ],
